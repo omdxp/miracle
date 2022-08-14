@@ -83,3 +83,46 @@ func TestGetSurahInfo(t *testing.T) {
 		}
 	}
 }
+
+func TestReadSurah(t *testing.T) {
+	quran := Book()
+	tests := []struct {
+		n        uint
+		expected struct {
+			surah *Surah
+			err   error
+		}
+	}{
+		{
+			n: suar.AL_FAJR,
+			expected: struct {
+				surah *Surah
+				err   error
+			}{
+				surah: &Surah{
+					Index: "089",
+				},
+			},
+		},
+		{
+			n: 255,
+			expected: struct {
+				surah *Surah
+				err   error
+			}{
+				surah: nil,
+				err:   &SurahNumberError{},
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		surah, err := quran.ReadSurah(tt.n)
+		if surah != nil && surah.Index != tt.expected.surah.Index {
+			t.Fatalf("expected %v, got %v", tt.expected.surah, surah)
+		}
+		if err != tt.expected.err {
+			t.Fatalf("expected %v, got %v", tt.expected.err, err)
+		}
+	}
+}

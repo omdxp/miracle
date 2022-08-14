@@ -13,9 +13,11 @@ func main() {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-	s, err := quran.ReadSurah(suar.AAL_IMRAN)
+	s, err := quran.ReadSurah(suar.AL_FAJR)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-	fmt.Println(s.Verse["verse_22"])
+	fmt.Println("count:", s.Count)
+	fmt.Println("indx:", s.Index)
+	fmt.Println("name:", s.Name)
 }
