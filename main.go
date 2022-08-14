@@ -1,6 +1,7 @@
 package miracle
 
 import (
+	"fmt"
 	"path/filepath"
 	"runtime"
 )
@@ -35,8 +36,31 @@ func (q *Quran) SetLanguage(l string) error {
 }
 
 // ReadSurah read a surah by its number in the Quran
-func (q *Quran) ReadSurah(n int) (Surah, error) {
-	return Surah{}, nil
+func (q *Quran) ReadSurah(n uint) (*Surah, error) {
+	if n < 1 || n > 114 {
+		return nil, &SurahNumberError{}
+	}
+	dirPath := filepath.Dir(f)
+	var file string
+	var parentDir string
+	switch q.Language {
+	case "ar":
+		file = fmt.Sprintf("surah_%d.json", n)
+		parentDir = "data/surah/"
+	case "en":
+		file = fmt.Sprintf("en_translation_%d.json", n)
+		parentDir = "data/translation/en/"
+	}
+
+	bytes, err := openJsonFile(filepath.Join(dirPath, parentDir, file))
+	if err != nil {
+		return nil, err
+	}
+	surah, err := unmarshalSurahJson(bytes)
+	if err != nil {
+		return nil, err
+	}
+	return surah, nil
 }
 
 // GetSurahInfo gets surah information by its number in the Quran

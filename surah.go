@@ -1,11 +1,11 @@
 package miracle
 
 type Surah struct {
-	Index string     `json:"index"`
-	Name  string     `json:"name"`
-	Verse any        `json:"verse"`
-	Count uint       `json:"count"`
-	Juz   JuzInSurah `json:"juz"`
+	Index string            `json:"index"`
+	Name  string            `json:"name"`
+	Verse map[string]string `json:"verse"`
+	Count uint              `json:"count"`
+	Juz   []JuzInSurah      `json:"juz"`
 }
 
 type Verse struct {

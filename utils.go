@@ -23,3 +23,13 @@ func unmarshalSurahInfoJson(b []byte) (*[]SurahInfo, error) {
 	}
 	return suar, nil
 }
+
+// unmarshalSurahJson unmarshal the ./data/surah/surah_X.json file
+func unmarshalSurahJson(b []byte) (*Surah, error) {
+	var surah *Surah
+	err := json.Unmarshal(b, &surah)
+	if err != nil {
+		return nil, err
+	}
+	return surah, nil
+}
