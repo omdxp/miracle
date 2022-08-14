@@ -13,9 +13,9 @@ func main() {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-	surah, err := quran.GetSurahInfo(suar.ABASA)
+	surah, err := quran.GetSurahInfo(suar.AL_FATIHA)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-	fmt.Println(surah.Juz)
+	fmt.Printf("%#v\n", surah)
 }
