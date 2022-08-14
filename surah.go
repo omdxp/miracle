@@ -1,7 +1,7 @@
 package miracle
 
 type Surah struct {
-	Index uint       `json:"index"`
+	Index string     `json:"index"`
 	Name  string     `json:"name"`
 	Verse any        `json:"verse"`
 	Count uint       `json:"count"`
@@ -14,7 +14,7 @@ type Verse struct {
 }
 
 type JuzInSurah struct {
-	Index uint `json:"index"`
+	Index string `json:"index"`
 	Verse `json:"verse"`
 }
 
@@ -24,7 +24,7 @@ type SurahInfo struct {
 	Count   uint         `json:"count"`
 	Title   string       `json:"title"`
 	TitleAr string       `json:"titleAr"`
-	Index   uint         `json:"index"`
-	Pages   uint         `json:"pages"`
+	Index   string       `json:"index"`
+	Pages   string       `json:"pages"`
 	Juz     []JuzInSurah `json:"juz"`
 }
