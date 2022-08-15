@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48713070/184625968-de46ff9b-7826-48b1-b6a8-955907584765.png" width=300 alt="miracle" />
+</p>
+
 <h1 align="center">miracle</h1>
 <p align="center">Read Quran and Get Info about Suar and Ajzaa</p>
 
