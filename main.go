@@ -18,13 +18,13 @@ func init() {
 }
 
 type Quran struct {
-	Language string
+	language string
 }
 
 // Book returns a pointer to Quran struct
 func Book() *Quran {
 	return &Quran{
-		Language: "ar",
+		language: "ar",
 	}
 }
 
@@ -33,7 +33,7 @@ func Book() *Quran {
 func (q *Quran) SetLanguage(l string) error {
 	switch l {
 	case "en", "ar":
-		q.Language = l
+		q.language = l
 		return nil
 	}
 	return &NotSupportedLanguageError{}
@@ -46,7 +46,7 @@ func (q *Quran) ReadSurah(n uint) (*Surah, error) {
 	}
 	var file string
 	var parentDir string
-	switch q.Language {
+	switch q.language {
 	case "ar":
 		file = fmt.Sprintf("surah_%d.json", n)
 		parentDir = "data/surah/"
