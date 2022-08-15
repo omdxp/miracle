@@ -6,11 +6,15 @@ import (
 	"runtime"
 )
 
-var f string
+var (
+	f       string
+	dirPath string
+)
 
 func init() {
 	_, file, _, _ := runtime.Caller(0)
 	f = file
+	dirPath = filepath.Dir(f)
 }
 
 type Quran struct {
@@ -40,7 +44,6 @@ func (q *Quran) ReadSurah(n uint) (*Surah, error) {
 	if n < 1 || n > 114 {
 		return nil, &SurahNumberError{}
 	}
-	dirPath := filepath.Dir(f)
 	var file string
 	var parentDir string
 	switch q.Language {
@@ -68,7 +71,6 @@ func (q *Quran) GetSurahInfo(n uint) (*SurahInfo, error) {
 	if n < 1 || n > 114 {
 		return nil, &SurahNumberError{}
 	}
-	dirPath := filepath.Dir(f)
 	bytes, err := openJsonFile(filepath.Join(dirPath, "data/surah.json"))
 	if err != nil {
 		return nil, err
@@ -79,4 +81,21 @@ func (q *Quran) GetSurahInfo(n uint) (*SurahInfo, error) {
 	}
 	surah := (*suar)[n-1]
 	return &surah, nil
+}
+
+// GetJuzInfo gets juz information by its number in the Quran
+func (q *Quran) GetJuzInfo(n uint) (*Juz, error) {
+	if n < 1 || n > 30 {
+		return nil, &JuzNumberError{}
+	}
+	bytes, err := openJsonFile(filepath.Join(dirPath, "data/juz.json"))
+	if err != nil {
+		return nil, err
+	}
+	ajzaa, err := unmarshalJuzInfoJson(bytes)
+	if err != nil {
+		return nil, err
+	}
+	juz := (*ajzaa)[n-1]
+	return &juz, nil
 }

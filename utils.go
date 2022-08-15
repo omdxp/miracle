@@ -25,6 +25,7 @@ func unmarshalSurahInfoJson(b []byte) (*[]SurahInfo, error) {
 }
 
 // unmarshalSurahJson unmarshal the ./data/surah/surah_X.json file
+// (or ./data/translation/en/en_translation_1.json in case of en)
 func unmarshalSurahJson(b []byte) (*Surah, error) {
 	var surah *Surah
 	err := json.Unmarshal(b, &surah)
@@ -32,4 +33,14 @@ func unmarshalSurahJson(b []byte) (*Surah, error) {
 		return nil, err
 	}
 	return surah, nil
+}
+
+// unmarshalJuzInfoJson unmarshal the ./data/juz.json file
+func unmarshalJuzInfoJson(b []byte) (*[]Juz, error) {
+	var ajzaa *[]Juz
+	err := json.Unmarshal(b, &ajzaa)
+	if err != nil {
+		return nil, err
+	}
+	return ajzaa, nil
 }

@@ -1,0 +1,34 @@
+package ajzaa
+
+const (
+	JUZ_1 = iota + 1
+	JUZ_2
+	JUZ_3
+	JUZ_4
+	JUZ_5
+	JUZ_6
+	JUZ_7
+	JUZ_8
+	JUZ_9
+	JUZ_10
+	JUZ_11
+	JUZ_12
+	JUZ_13
+	JUZ_14
+	JUZ_15
+	JUZ_16
+	JUZ_17
+	JUZ_18
+	JUZ_19
+	JUZ_20
+	JUZ_21
+	JUZ_22
+	JUZ_23
+	JUZ_24
+	JUZ_25
+	JUZ_26
+	JUZ_27
+	JUZ_28
+	JUZ_29
+	JUZ_30
+)
