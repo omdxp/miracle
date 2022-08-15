@@ -3,6 +3,7 @@ package miracle
 import (
 	"testing"
 
+	"github.com/Omar-Belghaouti/miracle/ajzaa"
 	"github.com/Omar-Belghaouti/miracle/suar"
 )
 
@@ -120,6 +121,49 @@ func TestReadSurah(t *testing.T) {
 		surah, err := quran.ReadSurah(tt.n)
 		if surah != nil && surah.Index != tt.expected.surah.Index {
 			t.Fatalf("expected %v, got %v", tt.expected.surah, surah)
+		}
+		if err != tt.expected.err {
+			t.Fatalf("expected %v, got %v", tt.expected.err, err)
+		}
+	}
+}
+
+func TestGetJuzInfo(t *testing.T) {
+	quran := Book()
+	tests := []struct {
+		n        uint
+		expected struct {
+			juz *Juz
+			err error
+		}
+	}{
+		{
+			n: ajzaa.JUZ_1,
+			expected: struct {
+				juz *Juz
+				err error
+			}{
+				juz: &Juz{
+					Index: "01",
+				},
+				err: nil,
+			},
+		},
+		{
+			n: 255,
+			expected: struct {
+				juz *Juz
+				err error
+			}{
+				juz: nil,
+				err: &JuzNumberError{},
+			},
+		},
+	}
+	for _, tt := range tests {
+		juz, err := quran.GetJuzInfo(tt.n)
+		if juz != nil && juz.Index != tt.expected.juz.Index {
+			t.Fatalf("expected %v, got %v", tt.expected.juz.Index, juz.Index)
 		}
 		if err != tt.expected.err {
 			t.Fatalf("expected %v, got %v", tt.expected.err, err)
