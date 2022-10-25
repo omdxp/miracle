@@ -70,4 +70,4 @@ func main() {
 
 ## Documentation
 
-Check the documentation [website](https://omar-belghaouti.github.io/miracle-docs/) for more information.
+Check the documentation [website](https://omdxp.github.io/miracle-docs/) for more information.
